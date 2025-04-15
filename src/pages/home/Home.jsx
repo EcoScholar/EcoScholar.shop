@@ -210,16 +210,14 @@ const Home = () => {
             </div>
           </div>
 
-          <div id="about-us" className="relative overflow-hidden flex flex-col items-center justify-between p-4 md:p-8 gap-4 md:gap-8">
-           
-            <div id="about-us-in" className="w-full text-center">
-              <h3 className="text-xl md:text-2xl font-bold mb-2">About Us – Built by Passion,</h3>
-              <h3 className="text-xl md:text-2xl font-bold mb-4">Fueled by Code</h3>
-              <p className="text-sm md:text-base leading-relaxed">
-                Three students, one dream—born from a love for books and an obsession with coding. What started as late-night brainstorming turned into a digital haven for readers and writers alike. We built this platform with passion, blending technology and storytelling to create a space where books find new homes and ideas never fade. This isn't just a marketplace—it's our tribute to knowledge, creativity, and the magic of words. Welcome to our journey. Welcome to LUMELEAF
-              </p>
+          <div id="about-us" className="relative flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 my-0 gap-4 section">
+            <div id="about-us-in" className="w-full ">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3">About Us – Built by Passion,</h3>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Fueled by Code</h3>
+              <p className="text-base md:text-lg leading-relaxed">
+                Three students, one dream—born from a love for books and an obsession with coding. What started as late-night brainstorming turned into a digital haven for readers and writers alike. We built this platform with passion, blending technology and storytelling to create a space where books find new homes and ideas never fade. This isn't just a marketplace—it's our tribute to knowledge, creativity, and the magic of words.</p>   
+                 <p>Welcome to our journey.</p>
             </div>
-           
           </div>
 
           <div id="cards-container" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 md:p-8">
