@@ -1,11 +1,13 @@
 // Base URL for API calls
 const baseURL = process.env.NODE_ENV === 'production' 
-  ? 'https://ecoscholar.onrender.com'
+  ? 'https://backend-1-iota.vercel.app/'
   : 'http://localhost:5000';
 
 const getBaseUrl = () => {
-    console.log('Using base URL:', baseURL);
-    return baseURL;
+    // Remove any trailing slash to prevent double slashes in API calls
+    const url = baseURL.endsWith('/') ? baseURL.slice(0, -1) : baseURL;
+    console.log('Using base URL:', url);
+    return url;
 }
 
 export { baseURL };
