@@ -55,15 +55,15 @@ const Footer = () => {
           <div className="team-members grid gap-6">
             <div className="member bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-all">
               <h3 className="text-xl font-bold mb-2">Priyanshu Ranjan Mishra</h3>
-              <p className="text-green-400">Full Stack Developer | UI/UX Designer</p>
-            </div>
-            <div className="member bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-all">
-              <h3 className="text-xl font-bold mb-2">Ashmin Kumar Behera</h3>
-              <p className="text-green-400">Frontend Developer | Animation Specialist</p>
+              <p className="text-green-400">Mern Stack Developer | UI/UX Designer | Animation Specialist </p>
             </div>
             <div className="member bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-all">
               <h3 className="text-xl font-bold mb-2">Razzaq Mahammed</h3>
-              <p className="text-green-400">Backend Developer | Database Expert</p>
+              <p className="text-green-400">Mern Stack Developer | Database Expert | Animation Specialist</p>
+            </div>
+            <div className="member bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-all">
+              <h3 className="text-xl font-bold mb-2">Ashmin Kumar Behera</h3>
+              <p className="text-green-400">Frontend Developer</p>
             </div>
           </div>
           <p className="team-description my-6 text-gray-300">
