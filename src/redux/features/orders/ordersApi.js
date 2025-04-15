@@ -48,7 +48,7 @@ const ordersApi = createApi({
     endpoints: (builder) => ({
         createOrder: builder.mutation({
             query: (newOrder) => ({
-                url: "/",
+                url: "",
                 method: "POST",
                 body: newOrder
             }),
@@ -56,7 +56,7 @@ const ordersApi = createApi({
         }),
         getOrderByEmail: builder.query({
             query: (email) => ({
-                url: `/email/${email}`,
+                url: `email/${email}`,
                 method: 'GET'
             }),
             providesTags: ['Orders']
@@ -65,7 +65,7 @@ const ordersApi = createApi({
             query: (orderId) => {
                 console.log('Cancelling order:', orderId);
                 return {
-                    url: `/cancel/${orderId}`,
+                    url: `cancel/${orderId}`,
                     method: 'PATCH',
                     // Add empty body to ensure proper request formatting
                     body: {}
