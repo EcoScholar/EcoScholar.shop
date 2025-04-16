@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent text selection on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+/* Improve touch targets */
+button, 
+a,
+input[type="button"],
+input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"] {
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Improve touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent pull-to-refresh */
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  /* Better tap targets */
+  button, a, input, select {
+    padding: 8px 12px;
+    margin: 4px;
+  }
+}
+
+/* Smooth scrolling - Only for non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Better form styles on mobile */
+input,
+select,
+textarea {
+  @apply w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent;
+}
+
+/* Mobile-friendly buttons */
+button,
+.button {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-md transition-colors duration-200 ease-in-out;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  @apply overflow-x-hidden;
+}
+
+/* Add safe area insets for modern mobile browsers */
+@supports(padding: max(0px)) {
+  body {
+    padding-left: min(0vw, env(safe-area-inset-left));
+    padding-right: min(0vw, env(safe-area-inset-right));
+    padding-bottom: min(0vh, env(safe-area-inset-bottom));
+  }
+}
+
+/* Improve mobile form elements */
+select {
+  @apply appearance-none bg-white;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+/* Better mobile tables */
+table {
+  @apply w-full border-collapse;
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    @apply block overflow-x-auto;
+  }
+}
+
+/* Mobile-friendly images */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Improved mobile links */
+a {
+  @apply inline-block;
+}
+
+/* Better mobile lists */
+ul, ol {
+  @apply pl-4;
+}
+
+/* Mobile-friendly headings */
+h1 { @apply text-2xl md:text-4xl font-bold mb-4; }
+h2 { @apply text-xl md:text-3xl font-bold mb-3; }
+h3 { @apply text-lg md:text-2xl font-bold mb-2; }
+h4 { @apply text-base md:text-xl font-bold mb-2; }
+h5 { @apply text-sm md:text-lg font-bold mb-1; }
+h6 { @apply text-xs md:text-base font-bold mb-1; }
+
+@layer base {
+  body {
+    @apply antialiased;
+    background-color: #000; /* Black background */
+    color: #00FF00; /* Bright green text */
+    font-family: Arial, sans-serif; /* Ensure a readable font */
+  }
+}
+
+@layer utilities {
+  .tracking-wider {
+    letter-spacing: 0.1em;
+  }
+}
+
+.hover-background {
+  @apply fixed inset-0 w-full h-full pointer-events-none -z-10 opacity-0 transition-opacity duration-700 ease-in-out bg-center bg-cover bg-no-repeat;
+}
+
+.nav-item:hover + .hover-background {
+  @apply opacity-20;
+}
+
+a {
+  color: #00FF00; /* Bright green for links */
+  text-decoration: none; /* Optional: Remove underline from links */
+}
+
+button {
+  background-color: #000; /* Black background for buttons */
+  color: #00FF00; /* Bright green text for buttons */
+  transition: color 0.3s ease;
+}
+
+button:hover {
+  color: #00FF00 !important; /* Using Tailwind's green-400 color */
+}
+
+input, textarea {
+  background-color: #000000; /* Black background for input fields */
+  color: #00FF00; /* Bright green text for input fields */
+}
+
+.text-element {
+  color: #00FF00; /* Bright green text */
+  z-index: 10; /* Ensure text is on top of other elements */
+  padding: 10px; /* Add padding to prevent text from being cut off */
+}
+
+@media (max-width: 768px) {
+  .text-element {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+#root {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Update Lenis styles for better mobile performance */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Add touch-specific optimizations */
+@supports (-webkit-touch-callout: none) {
+  .lenis {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Modal styles */
+dialog {
+  margin: auto;
+  padding: 0;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+/* Footer styles */
+#footer {
+  min-height: 40vh;
+  width: 100%;
+  background: linear-gradient(to left bottom, #119f3a 0%, #ace022 80%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6.5vw;
+  padding: 4rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  #footer {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  #f1 img {
+    margin: 0 auto;
+  }
+
+  #f2, #f3 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #f2 h3, #f3 h3 {
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+
+  dialog {
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+}

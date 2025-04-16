@@ -1,0 +1,119 @@
+/* Responsive styles */
+
+/* Base styles */
+:root {
+  --header-height: 4rem;
+  --section-padding: 2rem;
+}
+
+/* Mobile first approach */
+@media screen and (max-width: 767px) {
+  :root {
+    --header-height: 3.5rem;
+    --section-padding: 1rem;
+  }
+
+  /* Typography adjustments */
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+  
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+  
+  p {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+
+  /* Touch optimizations */
+  button, 
+  a {
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+  }
+
+  /* Spacing adjustments */
+  .container {
+    padding-left: var(--section-padding);
+    padding-right: var(--section-padding);
+  }
+
+  /* Animation optimizations */
+  .slider {
+    --slide-transition: transform 0.3s ease;
+  }
+
+  /* Custom cursor disabled */
+  #cursor,
+  #cursor-blur {
+    display: none;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --section-padding: 1.5rem;
+  }
+
+  .container {
+    padding-left: var(--section-padding);
+    padding-right: var(--section-padding);
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* High-resolution screens */
+@media screen and (min-width: 1920px) {
+  :root {
+    --section-padding: 3rem;
+  }
+
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  body {
+    color: #000;
+    background: #fff;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #fff;
+    --bg-color: #000;
+  }
+}

@@ -1,0 +1,278 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowDown } from 'lucide-react';
+import Banner from './Banner';
+import TopSellers from './TopSellers';
+import Recommened from './Recommened';
+import CanvasAnimation from './CanvasAnimation';
+import ImageSlider from './ImageSlider';
+import Homey from './Homey';
+import Craft from './Craft';
+import Real from './Real';
+import Para from './Para';
+import Capsules from './Capsules';
+import Footer from '../../n.components/Footer';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const Home = () => {
+  const navigate = useNavigate();
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const cursorRef = useRef(null);
+  const cursorBlurRef = useRef(null);
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    // Add smooth scroll behavior to html element
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', checkMobile);
+
+    // Handle mouse move for cursor effect
+    const handleMouseMove = (e) => {
+      if (isMobile) return;
+      
+      setCursorPos({ x: e.clientX, y: e.clientY });
+      if (cursorRef.current) {
+        cursorRef.current.style.left = e.clientX + 'px';
+        cursorRef.current.style.top = e.clientY + 'px';
+      }
+      if (cursorBlurRef.current) {
+        cursorBlurRef.current.style.left = e.clientX - 250 + 'px';
+        cursorBlurRef.current.style.top = e.clientY - 250 + 'px';
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    // GSAP Animations with slower scrub
+    gsap.to(mainRef.current, {
+      backgroundColor: '#000',
+      scrollTrigger: {
+        trigger: mainRef.current,
+        scroller: "body",
+        start: 'top -25%',
+        end: 'top -70%',
+        scrub: 2, // Increased scrub value for slower animation
+      },
+    });
+
+    const cards = gsap.utils.toArray('.about-card');
+    cards.forEach((card) => {
+      gsap.from(card, {
+        y: isMobile ? 50 : 100,
+        opacity: 0,
+        duration: isMobile ? 0.6 : 1, // Increased duration
+        ease: "power2.out", // Changed to smoother ease
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          end: "top 15%",
+          toggleActions: "play none none reverse",
+          scrub: 1.5 // Added slower scrub
+        }
+      });
+    });
+
+    const updateBodyTheme = () => {
+      document.querySelectorAll(".section").forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const midpoint = window.innerHeight / 2;
+
+        if (rect.top <= midpoint && rect.bottom >= midpoint) {
+          const color = section.dataset.color;
+          document.body.setAttribute("theme", color || "black");
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateBodyTheme);
+    updateBodyTheme();
+
+    gsap.utils.toArray(".card").forEach((card, index) => {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: isMobile ? 0.6 : 1, // Increased duration
+        ease: "power2.out", // Changed to smoother ease
+        delay: isMobile ? index * 0.1 : index * 0.2, // Increased delay between cards
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          end: "top 15%",
+          toggleActions: "play none none reverse",
+          scrub: 1.5 // Added slower scrub
+        }
+      });
+    });
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', checkMobile);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      window.removeEventListener('scroll', updateBodyTheme);
+      // Reset scroll behavior
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, [isMobile]);
+
+  // Add smooth scroll behavior to anchor links with slower duration
+  useEffect(() => {
+    const handleAnchorClick = (e) => {
+      const href = e.currentTarget.getAttribute('href');
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const startPosition = window.pageYOffset;
+          const distance = targetPosition - startPosition;
+          
+          // Smooth scroll with custom timing function
+          const duration = 2000; // 2 seconds duration
+          const start = performance.now();
+          
+          function animate(currentTime) {
+            const timeElapsed = currentTime - start;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            // Easing function for smoother animation
+            const easing = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            
+            window.scrollTo(0, startPosition + distance * easing(progress));
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+          
+          requestAnimationFrame(animate);
+        }
+      }
+    };
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick);
+    });
+
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick);
+      });
+    };
+  }, []);
+
+  return (
+    <>
+     
+      
+      {!isMobile && (
+        <>
+          <div ref={cursorRef} id="cursor" className="hidden md:block"></div>
+          <div ref={cursorBlurRef} id="cursor-blur" className="hidden md:block"></div>
+        </>
+      )}
+      <div ref={mainRef} id="main">
+        <div id="page1">
+          <h1>Pages. Stories. Legacy.</h1>
+          <h2>Unfold Stories, Rewrite Destinies</h2>
+         
+          <div id="arrow">
+            <ArrowDown size={50} />
+          </div>
+        </div>
+
+        <CanvasAnimation />
+
+        <div id="page2">
+          <div id="scroller">
+            <div id="scroller-in">
+              {['•RAZZAQ•', '•ASHMIN•', '•PRIYANSHU•'].map(
+                (text) => (
+                  <h4 key={text}>{text}</h4>
+                )
+              )}
+            </div>
+            <div id="scroller-in">
+              {['•RAZZAQ•', '•ASHMIN•', '•PRIYANSHU•'].map(
+                (text) => (
+                  <h4 key={text}>{text}</h4>
+                )
+              )}
+            </div>
+          </div>
+
+          <div id="about-us" className="relative overflow-hidden flex flex-col items-center justify-between p-4 md:p-8 gap-4 md:gap-8">
+           
+            <div id="about-us-in" className="w-full text-center">
+              <h3 className="text-xl md:text-2xl font-bold mb-2">About Us – Built by Passion,</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">Fueled by Code</h3>
+              <p className="text-sm md:text-base leading-relaxed">
+                Three students, one dream—born from a love for books and an obsession with coding. What started as late-night brainstorming turned into a digital haven for readers and writers alike. We built this platform with passion, blending technology and storytelling to create a space where books find new homes and ideas never fade. This isn't just a marketplace—it's our tribute to knowledge, creativity, and the magic of words. Welcome to our journey. Welcome to LUMELEAF
+              </p>
+            </div>
+           
+          </div>
+
+          <div id="cards-container" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 md:p-8">
+            <div onClick={() => navigate('/all-items')} className="card p-4 rounded-lg shadow-lg" id="card1">
+              <h4 onClick={() => navigate('/all-items')} className="text-lg md:text-xl font-semibold mb-2">Collections 📚</h4>
+              <p className="text-sm md:text-base">
+                Discover, trade, and treasure books that whisper wisdom through time.
+              </p>
+            </div>
+            <div onClick={() => navigate('/sell')} className="card p-4 rounded-lg shadow-lg" id="card2">
+              <h4 onClick={() => navigate('/sell')} className="text-lg md:text-xl font-semibold mb-2">Sell 📚</h4>
+              <p className="text-sm md:text-base">
+                From pens that glide to notebooks that listen—find tools that spark creativity.
+              </p>
+            </div>
+            <div onClick={() => navigate('/studymaterials')} className="card p-4 rounded-lg shadow-lg" id="card3">
+              <h4 onClick={() => navigate('/studymaterials')} className="text-lg md:text-xl font-semibold mb-2">Study Materials 📚</h4>
+              <p className="text-sm md:text-base">
+                Curated for readers, writers, and visionaries—shop with purpose, sell with pride.
+              </p>
+            </div>
+            <div onClick={() => navigate('/library')} className="card p-4 rounded-lg shadow-lg" id="card4">
+              <h4 onClick={() => navigate('/library')} className="text-lg md:text-xl font-semibold mb-2">Library 📚</h4>
+              <p className="text-sm md:text-base">
+                Access premium study resources, from textbooks to digital notes.
+                Get everything you need for academic success in one place, with
+                expert-curated content and practical guides.
+              </p>
+            </div>
+          </div>
+
+          <ImageSlider />
+        </div>
+
+
+
+        <div className="animation-123-container">
+          <div className="main overflow-hidden w-full mx-auto px-4">
+            <Homey />
+            <Craft />
+            <Real />
+            <Banner />
+            <Recommened />
+            <TopSellers />
+            <Para />
+            <Capsules />
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default Home;
