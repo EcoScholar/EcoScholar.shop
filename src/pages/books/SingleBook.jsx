@@ -151,9 +151,9 @@ const SingleBook = () => {
                             
                             <div className="text-lg">
                                 <span className="font-semibold text-gray-700">Price:</span>
-                                <span className="ml-2 text-2xl text-green-600 font-bold">${book?.newPrice}</span>
+                                <span className="ml-2 text-2xl text-green-600 font-bold">₹{book?.newPrice}</span>
                                 {book?.oldPrice && (
-                                    <span className="ml-3 text-gray-500 line-through">${book?.oldPrice}</span>
+                                    <span className="ml-3 text-gray-500 line-through">₹{book?.oldPrice}</span>
                                 )}
                             </div>
                         </div>
