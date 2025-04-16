@@ -65,6 +65,9 @@ const Recommened = () => {
         }
     };
 
+    // Card wrapper class for consistent sizing
+    const cardWrapperClass = `h-full w-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200`;
+
     return (
         <div className={`${screenSize.isSmallMobile ? 'py-4' : screenSize.isMobile ? 'py-8' : 'py-16'} px-1.5 sm:px-2 md:px-4`}>
             {/* Trending Books Section */}
@@ -76,7 +79,7 @@ const Recommened = () => {
                     trendingBooksToShow.length > 0 ? trendingBooksToShow.map((book, index) => (
                         <div 
                             key={index} 
-                            className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
+                            className={cardWrapperClass}
                             onClick={() => recordVisit(book.id)}
                         >
                             <BookCard book={book} />
@@ -84,7 +87,7 @@ const Recommened = () => {
                     )) : books.slice(0, 4).map((book, index) => (
                         <div 
                             key={index} 
-                            className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
+                            className={cardWrapperClass}
                             onClick={() => recordVisit(book.id)}
                         >
                             <BookCard book={book} />
@@ -103,7 +106,7 @@ const Recommened = () => {
                         {historyBooks.map((book, index) => (
                             <div 
                                 key={index} 
-                                className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
+                                className={cardWrapperClass}
                                 onClick={() => recordVisit(book.id)}
                             >
                                 <BookCard book={book} />
