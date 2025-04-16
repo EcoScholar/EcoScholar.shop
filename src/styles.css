@@ -55,7 +55,108 @@ body {
   top: 0;
   left: 0;
   z-index: -2;
+  transition: all 0.5s ease-in-out;
+}
 
+/* Fullscreen video styles */
+.fullscreen-video {
+  z-index: 50 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.fullscreen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 51;
+}
+
+.fullscreen-title {
+  font-size: 8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: Matrix, gilroy, sans-serif;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease;
+}
+
+.fullscreen-description {
+  font-size: 1.5rem;
+  color: #fff;
+  max-width: 600px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  animation: fadeInUp 1.2s ease;
+}
+
+.fullscreen-hint {
+  position: absolute;
+  bottom: 40px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fullscreen-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.fullscreen-toggle:hover {
+  background-color: rgba(120, 144, 75, 0.8);
+  transform: scale(1.1);
+}
+
+.fullscreen-toggle svg {
+  color: white;
 }
 
 video {
@@ -85,7 +186,6 @@ video {
 
 #main {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.39);
 }
 
 @media (max-width: 700px) {
@@ -797,6 +897,24 @@ body {
   /* Update Home.jsx heading for smaller screens */
   .eco-scholar-heading {
     font-size: 5rem !important;
+  }
+
+  /* Fullscreen responsive styles */
+  .fullscreen-title {
+    font-size: 4rem;
+  }
+
+  .fullscreen-description {
+    font-size: 1rem;
+    max-width: 90%;
+    padding: 0 20px;
+  }
+
+  .fullscreen-toggle {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    right: 10px;
   }
 }
 
