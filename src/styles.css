@@ -213,7 +213,7 @@ video {
   font-size: 120px;
   font-weight: 900;
   font-family: gilroy;
-  margin-right: 0px;
+  margin-right: 20px;
   transition: all linear 0.3s;
   color: transparent;
   -webkit-text-stroke: 1.5px #ffffff;
