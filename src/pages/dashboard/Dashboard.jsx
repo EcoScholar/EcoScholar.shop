@@ -56,7 +56,7 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div>
-                  <span className="block text-2xl font-bold text-black">${data?.totalSales}</span>
+                  <span className="block text-2xl font-bold text-black">₹{data?.totalSales}</span>
                   <span className="block text-black">Total Sales</span>
                 </div>
               </div>
