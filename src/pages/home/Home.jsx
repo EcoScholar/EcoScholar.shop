@@ -231,7 +231,7 @@ const Home = () => {
           <div ref={cursorBlurRef} id="cursor-blur" className="hidden md:block"></div>
         </>
       )}
-      <div ref={mainRef} id="main">
+      <div ref={mainRef} id="main" style={{ margin: 0 }}>
         <div id="page1">
           <h1 ref={headingRef} className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}>EcoScholar</h1>
          
@@ -242,7 +242,7 @@ const Home = () => {
 
         <CanvasAnimation />
 
-        <div id="page2">
+        <div id="page2" style={{ margin: 0 }}>
           <div id="scroller">
             <div id="scroller-in">
               {['•RAZZAQ•' ,'•PRIYANSHU•','•RAZZAQ•' ,'•PRIYANSHU•', '•ASHMIN•'].map(
@@ -302,9 +302,7 @@ const Home = () => {
           <ImageSlider />
         </div>
 
-
-
-        <div className="animation-123-container">
+        <div className="animation-123-container" style={{ margin: 0 }}>
           <div className="main overflow-hidden w-full mx-auto px-4">
             <Homey />
             <Craft />
