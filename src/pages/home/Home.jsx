@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Maximize, Minimize } from 'lucide-react';
 import Banner from './Banner';
 import TopSellers from './TopSellers';
 import Recommened from './Recommened';
@@ -24,10 +24,17 @@ const Home = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isHeadingHidden, setIsHeadingHidden] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
+  const videoRef = useRef(null);
   const cursorRef = useRef(null);
   const cursorBlurRef = useRef(null);
   const mainRef = useRef(null);
   const headingRef = useRef(null);
+
+  // Toggle fullscreen video function
+  const toggleFullscreenVideo = () => {
+    setIsFullscreenVideo(!isFullscreenVideo);
+  };
 
   useEffect(() => {
     // Add smooth scroll behavior to html element
@@ -211,7 +218,7 @@ const Home = () => {
 
   return (  
     <>
-      <div id='video'>
+      <div id='video' className={isFullscreenVideo ? 'fullscreen-video' : ''} ref={videoRef}>
         <video 
           src="/Doze Studio.mp4" 
           autoPlay 
@@ -222,6 +229,13 @@ const Home = () => {
         />
         {videoError && (
           <div className="video-fallback"></div>
+        )}
+        {isFullscreenVideo && (
+          <div className="fullscreen-overlay" onClick={toggleFullscreenVideo}>
+            <h1 className="fullscreen-title">EcoScholar</h1>
+            <p className="fullscreen-description">Welcome to our digital haven for knowledge seekers</p>
+            <p className="fullscreen-hint">Click anywhere to exit fullscreen</p>
+          </div>
         )}
       </div>
       
@@ -234,6 +248,14 @@ const Home = () => {
       <div ref={mainRef} id="main" style={{ margin: 0 }}>
         <div id="page1">
           <h1 ref={headingRef} className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}>EcoScholar</h1>
+          
+          <button 
+            onClick={toggleFullscreenVideo} 
+            className="fullscreen-toggle"
+            aria-label={isFullscreenVideo ? "Exit fullscreen video" : "View fullscreen video"}
+          >
+            {isFullscreenVideo ? <Minimize size={24} /> : <Maximize size={24} />}
+          </button>
          
           <div id="arrow">
             <ArrowDown size={50} />
