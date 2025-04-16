@@ -56,7 +56,7 @@ const CartPage = () => {
                                                                 <h3 className="text-lg hover:text-green-600 transition-colors">
                                                                     <Link to='/'>{product?.title}</Link>
                                                                 </h3>
-                                                                <p className="sm:ml-4 text-xl font-bold text-green-600">${product?.newPrice}</p>
+                                                                <p className="sm:ml-4 text-xl font-bold text-green-600">₹{product?.newPrice}</p>
                                                             </div>
                                                             <p className="mt-2 text-sm text-gray-600 capitalize"><strong>Category: </strong>{product?.category}</p>
                                                         </div>
@@ -86,7 +86,7 @@ const CartPage = () => {
                 <div className="border-t border-gray-200 px-6 py-8 sm:px-8 bg-gray-50">
                     <div className="flex justify-between text-lg font-bold text-gray-900">
                         <p>Subtotal</p>
-                        <p className="text-green-600">${totalPrice ? totalPrice : 0}</p>
+                        <p className="text-green-600">₹{totalPrice ? totalPrice : 0}</p>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-8">
