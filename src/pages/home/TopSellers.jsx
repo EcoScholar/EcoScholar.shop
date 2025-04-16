@@ -30,10 +30,10 @@ const TopSellers = () => {
                 </select>
             </div>
 
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {
                     filteredBooks.length > 0 && filteredBooks.slice(0, 10).map((book, index) => (
-                        <div key={index} className="border border-gray-200">
+                        <div key={index} className="h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center">
                             <BookCard book={book} />
                         </div>
                     ))
