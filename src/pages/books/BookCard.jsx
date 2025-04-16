@@ -75,7 +75,7 @@ const BookCard = ({book}) => {
     }
 
     return (
-        <div className="bg-white p-3 hover:shadow-md transition-shadow duration-200 relative group cursor-pointer">
+        <div className="bg-white p-4 hover:shadow-md transition-shadow duration-200 relative group cursor-pointer h-full flex flex-col items-center w-full">
             {/* Wishlist Button */}
             <button 
                 className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-black hover:text-red-500 z-10"
@@ -111,34 +111,34 @@ const BookCard = ({book}) => {
             </button>
 
             {/* Image */}
-            <Link to={`/books/${book._id}`}>
-                <div className="aspect-[3/4] mb-3 flex items-center justify-center">
+            <Link to={`/books/${book._id}`} className="flex-shrink-0 w-full">
+                <div className="w-full h-52 mb-4 flex items-center justify-center overflow-hidden">
                     <img
                         src={`${getImgUrl(book?.coverImage)}`}
                         alt={title}
-                        className="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-200"
+                        className="w-auto h-auto max-h-full max-w-[150%] object-contain hover:scale-105 transition-all duration-300"
                     />
                 </div>
             </Link>
 
             {/* Content */}
-            <div>
+            <div className="flex flex-col flex-grow w-full text-center">
                 {/* Title */}
                 <Link to={`/books/${book._id}`}>
-                    <h3 className="text-sm text-black line-clamp-2 hover:text-[#2874f0]">
+                    <h3 className="text-sm text-black font-medium line-clamp-2 h-10 hover:text-[#2874f0]">
                         {title}
                     </h3>
                 </Link>
 
                 {/* Author & Publisher */}
-                <div className="text-xs text-black mt-1">
+                <div className="text-xs text-black mt-1 line-clamp-1">
                     {author && <span>{author}</span>}
                     {author && publisher && <span className="mx-1">|</span>}
                     {publisher && <span>{publisher}</span>}
                 </div>
 
                 {/* Rating */}
-                <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex items-center justify-center gap-2 mt-1.5">
                     <div className="flex items-center bg-green-700 text-white text-xs px-1.5 py-0.5 rounded">
                         <span className="font-medium">{rating}</span>
                         <FaStar size={10} className="ml-1" />
@@ -155,21 +155,23 @@ const BookCard = ({book}) => {
                     )}
                 </div>
 
-                {/* Price */}
-                <div className="flex items-center gap-2 mt-1.5">
-                    <span className="text-base font-medium text-black">₹{newPrice}</span>
-                    {originalPrice && (
-                        <>
-                            <span className="text-black line-through text-sm">₹{originalPrice}</span>
-                            {discount && (
-                                <span className="text-green-700 text-sm font-medium">{discount}% off</span>
-                            )}
-                        </>
-                    )}
-                </div>
+                <div className="mt-auto pt-2">
+                    {/* Price */}
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-base font-medium text-black">₹{newPrice}</span>
+                        {originalPrice && (
+                            <>
+                                <span className="text-black line-through text-sm">₹{originalPrice}</span>
+                                {discount && (
+                                    <span className="text-green-700 text-sm font-medium">{discount}% off</span>
+                                )}
+                            </>
+                        )}
+                    </div>
 
-                {/* Free Delivery */}
-                <div className="text-xs text-black mt-1">Free delivery</div>
+                    {/* Free Delivery */}
+                    <div className="text-xs text-black mt-1">Free delivery</div>
+                </div>
             </div>
         </div>
     )
