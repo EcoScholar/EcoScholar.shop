@@ -45,7 +45,7 @@ const UserDashboard = () => {
                                         <div className="border-b border-gray-200 pb-4 mb-4">
                                             <p className="font-semibold text-lg text-black">Order ID: <span className="text-black">{order._id}</span></p>
                                             <p className="text-black mt-2">Date: {new Date(order?.createdAt).toLocaleDateString()}</p>
-                                            <p className="text-black font-bold mt-2">Total: ${order.totalPrice}</p>
+                                            <p className="text-black font-bold mt-2">Total: ₹{order.totalPrice}</p>
                                             <p className="text-black mt-2">Status: <span className={`font-semibold ${order.orderStatus === 'CANCELLED' ? 'text-red-600' : 'text-green-600'}`}>{order.orderStatus}</span></p>
                                         </div>
                                         <div className="space-y-2">
