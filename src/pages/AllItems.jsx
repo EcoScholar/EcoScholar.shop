@@ -33,12 +33,12 @@ const AllItems = () => {
     
     const priceRangeButtons = [
         { label: 'All', min: 'min', max: '10000+' },
-        { label: 'Under $300', min: 'min', max: '300' },
-        { label: '$300 - $500', min: '300', max: '500' },
-        { label: '$500 - $1000', min: '500', max: '1000' },
-        { label: '$1000 - $2000', min: '1000', max: '2000' },
-        { label: '$2000 - $5000', min: '2000', max: '5000' },
-        { label: 'Above $5000', min: '5000', max: '10000+' },
+        { label: 'Under ₹300', min: 'min', max: '300' },
+        { label: '₹300 - ₹500', min: '300', max: '500' },
+        { label: '₹500 - ₹1000', min: '500', max: '1000' },
+        { label: '₹1000 - ₹2000', min: '1000', max: '2000' },
+        { label: '₹2000 - ₹5000', min: '2000', max: '5000' },
+        { label: 'Above ₹5000', min: '5000', max: '10000+' },
     ];
     
     const handlePriceButtonClick = (button) => {
