@@ -6,6 +6,10 @@ const Recommened = () => {
     const { data: books = [] } = useFetchAllBooksQuery();
     const [trendingBooksToShow, setTrendingBooksToShow] = useState([]);
     const [historyBooks, setHistoryBooks] = useState([]);
+    const [screenSize, setScreenSize] = useState({
+        isMobile: window.innerWidth < 768,
+        isSmallMobile: window.innerWidth < 400
+    });
     
     // Function to get random trending books
     useEffect(() => {
@@ -36,6 +40,19 @@ const Recommened = () => {
         }
     }, [books]);
     
+    // Handle responsive layout
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenSize({
+                isMobile: window.innerWidth < 768,
+                isSmallMobile: window.innerWidth < 400
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
     // Function to record book visit in history
     const recordVisit = (bookId) => {
         // Get current history
@@ -49,15 +66,17 @@ const Recommened = () => {
     };
 
     return (
-        <div className='py-16'>
+        <div className={`${screenSize.isSmallMobile ? 'py-4' : screenSize.isMobile ? 'py-8' : 'py-16'} px-1.5 sm:px-2 md:px-4`}>
             {/* Trending Books Section */}
-            <h2 className='text-3xl font-semibold mb-6 text-white'>Trending Books</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
+            <h2 className={`${screenSize.isSmallMobile ? 'text-lg' : screenSize.isMobile ? 'text-xl' : 'text-3xl'} font-semibold ${screenSize.isSmallMobile ? 'mb-2' : screenSize.isMobile ? 'mb-3' : 'mb-6'} text-white`}>
+                Trending Books
+            </h2>
+            <div className={`grid grid-cols-2 sm:grid-cols-4 gap-1 xs:gap-1.5 sm:gap-2 md:gap-6 ${screenSize.isSmallMobile ? 'mb-4' : screenSize.isMobile ? 'mb-6' : 'mb-12'}`}>
                 {
                     trendingBooksToShow.length > 0 ? trendingBooksToShow.map((book, index) => (
                         <div 
                             key={index} 
-                            className="h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center"
+                            className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
                             onClick={() => recordVisit(book.id)}
                         >
                             <BookCard book={book} />
@@ -65,7 +84,7 @@ const Recommened = () => {
                     )) : books.slice(0, 4).map((book, index) => (
                         <div 
                             key={index} 
-                            className="h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center"
+                            className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
                             onClick={() => recordVisit(book.id)}
                         >
                             <BookCard book={book} />
@@ -77,12 +96,14 @@ const Recommened = () => {
             {/* Recently Viewed Books Section */}
             {historyBooks.length > 0 && (
                 <>
-                    <h2 className='text-3xl font-semibold mb-6 text-white'>Recently Viewed</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    <h2 className={`${screenSize.isSmallMobile ? 'text-lg' : screenSize.isMobile ? 'text-xl' : 'text-3xl'} font-semibold ${screenSize.isSmallMobile ? 'mb-2' : screenSize.isMobile ? 'mb-3' : 'mb-6'} text-white`}>
+                        Recently Viewed
+                    </h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 xs:gap-1.5 sm:gap-2 md:gap-6">
                         {historyBooks.map((book, index) => (
                             <div 
                                 key={index} 
-                                className="h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center"
+                                className={`h-full border border-gray-200 overflow-hidden rounded-md shadow-sm hover:shadow-md transition-shadow duration-200 flex justify-center ${screenSize.isSmallMobile ? 'max-w-[170px] mx-auto' : ''}`}
                                 onClick={() => recordVisit(book.id)}
                             >
                                 <BookCard book={book} />
