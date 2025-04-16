@@ -897,6 +897,7 @@ body {
   .eco-scholar-heading {
     font-size: 5rem !important;
     -webkit-text-stroke: 1px #000000 !important;
+    font-weight: bold !important;
   }
 
   /* Fullscreen responsive styles */
@@ -923,6 +924,7 @@ body {
   .eco-scholar-heading {
     font-size: 3.5rem !important;
     -webkit-text-stroke: 0.5px #000000 !important;
+    font-weight: 900 !important; /* Extra bold for smallest screens */
   }
 }
 
@@ -930,6 +932,7 @@ body {
   .eco-scholar-heading {
     font-size: 5rem !important;
     -webkit-text-stroke: 1px #000000 !important;
+    font-weight: 900 !important; /* Extra bold for mobile */
   }
 }
 
