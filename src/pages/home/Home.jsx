@@ -269,7 +269,7 @@ const Home = () => {
           <h1 
             ref={headingRef} 
             className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}
-            style={{ fontWeight: headingFontWeight }}
+            style={{ fontWeight: headingFontWeight, userSelect: 'none' }}
           >
             EcoScholar
           </h1>
