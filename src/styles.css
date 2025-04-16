@@ -103,7 +103,7 @@ video {
 
 .eco-scholar-heading {
   font-size: 12rem !important;
-  font-weight: 590 !important;
+  font-weight: 700 !important;
   font-family: Matrix, gilroy, sans-serif !important;
   transition: all linear 0.3s !important;
   color: transparent !important;
@@ -213,7 +213,7 @@ video {
   font-size: 120px;
   font-weight: 900;
   font-family: gilroy;
-  margin-right: 20px;
+  margin-right: 0px;
   transition: all linear 0.3s;
   color: transparent;
   -webkit-text-stroke: 1.5px #ffffff;
@@ -791,6 +791,19 @@ body {
   /* Update Home.jsx heading for smaller screens */
   .eco-scholar-heading {
     font-size: 5rem !important;
+  }
+  
+  /* Remove margin from main section in mobile view */
+  #main, #page1, #page2, .animation-123-container, .animation-123-container .main {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Fix specific card container padding in mobile */
+  #cards-container {
+    padding: 20px 10px !important;
+    margin: 0 !important;
   }
 }
 
