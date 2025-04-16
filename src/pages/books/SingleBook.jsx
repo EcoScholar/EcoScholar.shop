@@ -134,6 +134,7 @@ const SingleBook = () => {
                         </div>
                         
                         <div className="space-y-4 mb-8">
+
                             <p className="text-lg">
                                 <span className="font-semibold text-gray-700">Author:</span>
                                 <span className="ml-2 text-gray-600">{book.author || 'admin'}</span>
@@ -144,11 +145,16 @@ const SingleBook = () => {
                                 <span className="ml-2 text-gray-600">{new Date(book?.createdAt).toLocaleDateString()}</span>
                             </p>
                             
-                            <p className="text-lg capitalize">
-                                <span className="font-semibold text-gray-700">Category:</span>
-                                <span className="ml-2 text-gray-600">{book?.category}</span>
-                            </p>
                             
+                            
+                            <p className="text-lg">
+                                <span className="font-semibold text-gray-700">Product Name:</span>
+                                <span className="ml-2 text-gray-600">{book.title}</span>
+                            </p>
+                        <div className="mb-8">
+                            <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
+                            <p className="text-gray-600 leading-relaxed">{book.description}</p>
+                        </div>
                             <div className="text-lg">
                                 <span className="font-semibold text-gray-700">Price:</span>
                                 <span className="ml-2 text-2xl text-green-600 font-bold">₹{book?.newPrice}</span>
@@ -158,10 +164,6 @@ const SingleBook = () => {
                             </div>
                         </div>
 
-                        <div className="mb-8">
-                            <h2 className="text-xl font-semibold text-gray-700 mb-2">Description</h2>
-                            <p className="text-gray-600 leading-relaxed">{book.description}</p>
-                        </div>
 
                         <div className="flex flex-col md:flex-row gap-4">
                             <button 
