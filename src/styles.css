@@ -66,6 +66,7 @@ video {
   position: absolute;
   top: 0;
   left: 0;
+  overflow: hidden;
 }
 
 .video-fallback {
@@ -86,6 +87,12 @@ video {
 #main {
   position: relative;
   background-color: rgba(0, 0, 0, 0.39);
+}
+
+@media (max-width: 500px) {
+  #main {
+    overflow: hidden;
+  }
 }
 
 #page1 {
