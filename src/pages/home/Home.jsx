@@ -240,7 +240,7 @@ const Home = () => {
           </div>
         </div>
 
-        <CanvasAnimation />
+       {!isMobile && <CanvasAnimation />}
 
         <div id="page2" style={{ margin: 0 }}>
           <div id="scroller">
