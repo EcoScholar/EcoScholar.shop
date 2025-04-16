@@ -25,6 +25,7 @@ const Home = () => {
   const [isHeadingHidden, setIsHeadingHidden] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [isFullscreenVideo, setIsFullscreenVideo] = useState(false);
+  const [headingFontWeight, setHeadingFontWeight] = useState(700);
   const videoRef = useRef(null);
   const cursorRef = useRef(null);
   const cursorBlurRef = useRef(null);
@@ -36,14 +37,32 @@ const Home = () => {
     setIsFullscreenVideo(!isFullscreenVideo);
   };
 
+  // Function to adjust heading font weight based on screen width
+  const adjustHeadingWeight = () => {
+    const width = window.innerWidth;
+    if (width < 480) {
+      setHeadingFontWeight(400);
+    } else if (width < 768) {
+      setHeadingFontWeight(500);
+    } else if (width < 1024) {
+      setHeadingFontWeight(600);
+    } else {
+      setHeadingFontWeight(700);
+    }
+  };
+
   useEffect(() => {
     // Add smooth scroll behavior to html element
     document.documentElement.style.scrollBehavior = 'smooth';
     
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
+      adjustHeadingWeight(); // Adjust heading weight on window resize
     };
     window.addEventListener('resize', checkMobile);
+
+    // Initial call to set font weight on component mount
+    adjustHeadingWeight();
 
     // Optimize video playback on mobile
     const videoElement = document.querySelector('#video video');
@@ -247,7 +266,13 @@ const Home = () => {
       )}
       <div ref={mainRef} id="main" style={{ margin: 0 }}>
         <div id="page1">
-          <h1 ref={headingRef} className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}>EcoScholar</h1>
+          <h1 
+            ref={headingRef} 
+            className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}
+            style={{ fontWeight: headingFontWeight }}
+          >
+            EcoScholar
+          </h1>
           
           <button 
             onClick={toggleFullscreenVideo} 
@@ -292,31 +317,30 @@ const Home = () => {
             </div>
           </div>
 
-          <div id="cards-container" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 md:p-8">
-            <div onClick={() => navigate('/all-items')} className="card p-4 rounded-lg shadow-lg" id="card1">
-              <h4 onClick={() => navigate('/all-items')} className="text-lg md:text-xl font-semibold mb-2">Collections 📚</h4>
-              <p className="text-sm md:text-base">
+          <div id="cards-container" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 p-3 md:p-8">
+            <div onClick={() => navigate('/all-items')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card1">
+              <h4 onClick={() => navigate('/all-items')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Collections 📚</h4>
+              <p className="text-xs md:text-base">
                 Discover, trade, and treasure books that whisper wisdom through time.
               </p>
             </div>
-            <div onClick={() => navigate('/sell')} className="card p-4 rounded-lg shadow-lg" id="card2">
-              <h4 onClick={() => navigate('/sell')} className="text-lg md:text-xl font-semibold mb-2">Sell 📚</h4>
-              <p className="text-sm md:text-base">
+            <div onClick={() => navigate('/sell')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card2">
+              <h4 onClick={() => navigate('/sell')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Sell 📚</h4>
+              <p className="text-xs md:text-base">
                 From pens that glide to notebooks that listen—find tools that spark creativity.
               </p>
             </div>
-            <div onClick={() => navigate('/studymaterials')} className="card p-4 rounded-lg shadow-lg" id="card3">
-              <h4 onClick={() => navigate('/studymaterials')} className="text-lg md:text-xl font-semibold mb-2">Study Materials 📚</h4>
-              <p className="text-sm md:text-base">
+            <div onClick={() => navigate('/studymaterials')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card3">
+              <h4 onClick={() => navigate('/studymaterials')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Study Materials 📚</h4>
+              <p className="text-xs md:text-base">
                 Curated for readers, writers, and visionaries—shop with purpose, sell with pride.
               </p>
             </div>
-            <div onClick={() => navigate('/library')} className="card p-4 rounded-lg shadow-lg" id="card4">
-              <h4 onClick={() => navigate('/library')} className="text-lg md:text-xl font-semibold mb-2">Library 📚</h4>
-              <p className="text-sm md:text-base">
+            <div onClick={() => navigate('/library')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card4">
+              <h4 onClick={() => navigate('/library')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Library 📚</h4>
+              <p className="text-xs md:text-base">
                 Access premium study resources, from textbooks to digital notes.
-                Get everything you need for academic success in one place, with
-                expert-curated content and practical guides.
+                Get everything you need for academic success in one place.
               </p>
             </div>
           </div>
