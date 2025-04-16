@@ -157,10 +157,10 @@ const BookCard = ({book}) => {
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mt-1.5">
-                    <span className="text-base font-medium text-black">${newPrice}</span>
+                    <span className="text-base font-medium text-black">₹{newPrice}</span>
                     {originalPrice && (
                         <>
-                            <span className="text-black line-through text-sm">${originalPrice}</span>
+                            <span className="text-black line-through text-sm">₹{originalPrice}</span>
                             {discount && (
                                 <span className="text-green-700 text-sm font-medium">{discount}% off</span>
                             )}
