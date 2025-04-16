@@ -12,7 +12,6 @@ import Para from './Para';
 import Capsules from './Capsules';
 import Footer from '../../n.components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -23,9 +22,12 @@ const Home = () => {
   const navigate = useNavigate();
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isHeadingHidden, setIsHeadingHidden] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const cursorRef = useRef(null);
   const cursorBlurRef = useRef(null);
   const mainRef = useRef(null);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     // Add smooth scroll behavior to html element
@@ -35,6 +37,30 @@ const Home = () => {
       setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener('resize', checkMobile);
+
+    // Optimize video playback on mobile
+    const videoElement = document.querySelector('#video video');
+    if (videoElement) {
+      // For better mobile performance
+      if (isMobile) {
+        videoElement.setAttribute('playsinline', '');
+        videoElement.setAttribute('preload', 'auto');
+        
+        // Handle video loading issues
+        videoElement.addEventListener('loadeddata', () => {
+          videoElement.play().catch(e => {
+            console.log('Auto-play prevented:', e);
+            setVideoError(true);
+          });
+        });
+      }
+      
+      // Handle video loading errors
+      videoElement.addEventListener('error', () => {
+        console.log('Video error occurred');
+        setVideoError(true);
+      });
+    }
 
     // Handle mouse move for cursor effect
     const handleMouseMove = (e) => {
@@ -52,6 +78,18 @@ const Home = () => {
     };
 
     document.addEventListener('mousemove', handleMouseMove);
+
+    // Handle scroll to hide/show heading
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        setIsHeadingHidden(true);
+      } else {
+        setIsHeadingHidden(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
 
     // GSAP Animations with slower scrub
     gsap.to(mainRef.current, {
@@ -117,6 +155,7 @@ const Home = () => {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('scroll', handleScroll);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       window.removeEventListener('scroll', updateBodyTheme);
       // Reset scroll behavior
@@ -170,9 +209,21 @@ const Home = () => {
     };
   }, []);
 
-  return (
+  return (  
     <>
-     
+      <div id='video'>
+        <video 
+          src="/Doze Studio.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          onError={() => setVideoError(true)}
+        />
+        {videoError && (
+          <div className="video-fallback"></div>
+        )}
+      </div>
       
       {!isMobile && (
         <>
@@ -182,8 +233,7 @@ const Home = () => {
       )}
       <div ref={mainRef} id="main">
         <div id="page1">
-          <h1>Pages. Stories. Legacy.</h1>
-          <h2>Unfold Stories, Rewrite Destinies</h2>
+          <h1 ref={headingRef} className={`eco-scholar-heading ${isHeadingHidden ? 'heading-hidden' : ''}`}>EcoScholar</h1>
          
           <div id="arrow">
             <ArrowDown size={50} />
@@ -195,14 +245,14 @@ const Home = () => {
         <div id="page2">
           <div id="scroller">
             <div id="scroller-in">
-              {['•RAZZAQ•', '•ASHMIN•', '•PRIYANSHU•'].map(
+              {['•RAZZAQ•' ,'•PRIYANSHU•','•RAZZAQ•' ,'•PRIYANSHU•', '•ASHMIN•'].map(
                 (text) => (
                   <h4 key={text}>{text}</h4>
                 )
               )}
             </div>
             <div id="scroller-in">
-              {['•RAZZAQ•', '•ASHMIN•', '•PRIYANSHU•'].map(
+              {['•RAZZAQ•' ,'•PRIYANSHU•','•RAZZAQ•' ,'•PRIYANSHU•', '•ASHMIN•'].map(
                 (text) => (
                   <h4 key={text}>{text}</h4>
                 )
