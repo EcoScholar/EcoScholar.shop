@@ -4,7 +4,7 @@ import { useFetchAllBooksQuery } from '../redux/features/books/booksApi';
 import Loading from '../n.components/Loading';
 
 const categories = [
-    "All Books", "Stationary", "Special Feature Items", "Class 1-5", "Class 6-10", "11 & 12", "UG/PG", "Competitive", "Business", "Technology", "Fiction", "Horror", "Adventure"
+    "All Books", "Stationary", "Special_Features", "Class 1_5", "Class 6_10", "Class 11_12", "UG/PG", "Competitive", "Business", "Technology", "Fiction", "Horror", "Adventure"
 ];
 
 const languages = ["English", "Odia","Hindi", "Bengali", "Marathi", "Telugu", "Kannada"];
@@ -70,7 +70,10 @@ const AllItems = () => {
         if (!book || typeof book !== 'object') return false;
 
         const categoryMatch = selectedCategory === "All Books" || 
-            (book.category && book.category.toString().toLowerCase() === selectedCategory.toLowerCase());
+            (book.category && (
+                book.category.toString().toLowerCase() === selectedCategory.toLowerCase() ||
+                (selectedCategory === "Special Feature Items" && book.category.toString().toLowerCase() === "special_features")
+            ));
 
         const bookPrice = Number(book.newPrice) || 0;
         const minFilter = priceRange.min === 'min' ? 0 : Number(priceRange.min);
