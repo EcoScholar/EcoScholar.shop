@@ -67,7 +67,7 @@ const WishlistPage = () => {
                                                                 <h3 className="text-lg hover:text-green-600 transition-colors">
                                                                     <Link to={`/books/${product._id}`}>{product?.title}</Link>
                                                                 </h3>
-                                                                <p className="sm:ml-4 text-xl font-bold text-green-600">${product?.newPrice}</p>
+                                                                <p className="sm:ml-4 text-xl font-bold text-green-600">₹{product?.newPrice}</p>
                                                             </div>
                                                             <p className="mt-2 text-sm text-gray-600 capitalize"><strong>Category: </strong>{product?.category}</p>
                                                             {product?.author && (
