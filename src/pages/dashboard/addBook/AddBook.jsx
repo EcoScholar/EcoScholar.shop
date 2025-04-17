@@ -76,16 +76,16 @@ const AddBook = () => {
             { value: '', label: 'Choose A Category' },
             { value: 'stationary', label: 'Stationary' },
             { value: 'special_features', label: 'Special Feature Items' },
-            { value: 'class_1_5', label: 'Class 1-5' },
-            { value: 'class_6_10', label: 'Class 6-10' },
-            { value: 'class_11_12', label: '11 & 12' },
-            { value: 'ug_pg', label: 'UG/PG' },
-            { value: 'competitive', label: 'Competitive' },
-            { value: 'business', label: 'Business' },
-            { value: 'technology', label: 'Technology' },
-            { value: 'fiction', label: 'Fiction' },
-            { value: 'horror', label: 'Horror' },
-            { value: 'adventure', label: 'Adventure' }
+            { value: 'class 1_5', label: 'Class 1-5' },
+            { value: 'class 6_10', label: 'Class 6-10' },
+            { value: 'class 11_12', label: '11 & 12' },
+            { value: 'UG/PG', label: 'UG/PG' },
+            { value: 'Competitive', label: 'Competitive' },
+            { value: 'Business', label: 'Business' },
+            { value: 'Technology', label: 'Technology' },
+            { value: 'Fiction', label: 'Fiction' },
+            { value: 'Horror', label: 'Horror' },
+            { value: 'Adventure', label: 'Adventure' }
           ]}
           register={register}
         />
