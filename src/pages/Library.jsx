@@ -117,11 +117,11 @@ const Library = () => {
             whileHover="hover"
           >
             <h2 className="text-3xl font-bold text-white text-center mb-6">
-              Digital Knowledge Hub
+             Eco-Library
             </h2>
             
             <p className="text-lg text-cyan-100 text-center mb-8">
-              Our comprehensive library is currently under development. Soon you'll be able to access a wealth of educational resources.
+            The Eco-Library is an online platform where students can easily buy or rent academic books. It offers a convenient way to access study materials with options for purchase or short-term rental, secure payments, and home delivery, making learning more affordable and accessible.
             </p>
             
             <div className="flex justify-center">
