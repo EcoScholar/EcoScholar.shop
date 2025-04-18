@@ -1,37 +1,38 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaGraduationCap, FaSchool, FaAtom, FaUniversity, FaBookReader, FaLaptop } from 'react-icons/fa';
 
 const categories = [
   {
     name: 'Primary School',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSeOwUWfAGU_8HCMyK_zsGSPIYfndvDkO3CNJYw4Yoq43H0wBg/viewform?usp=dialog ',
-    image: 'https://cdn-icons-png.flaticon.com/512/201/201818.png'
+    icon: <FaSchool className="w-full h-full text-white" />
   },
   {
     name: 'High School',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSeR8ZAC7h6d1ACVJKTEb3bfh-gTH3lCJzj-MDMIB5v-14ThSA/viewform?usp=header',
-      image: 'https://th.bing.com/th/id/OIP.9H2Vz_efkzS-ikdAhgJGAgHaHa'
+    icon: <FaGraduationCap className="w-full h-full text-white" />
   },
   {
     name: '+2 Science',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSfEysidMmER0uICV51MISb6R3IW-zzwnGOftHa6PudsMRAC_g/viewform?usp=header',
-    image: 'https://static.vecteezy.com/system/resources/thumbnails/009/098/321/small/student-icon-line-free-vector.jpg'
+    icon: <FaAtom className="w-full h-full text-white" />
   },
   {
     name: 'UG/PG',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSfQ8YHa_tTzq-KHE7bHSkb0xKLIEXpPutU9X4QBcU9Ffc73aQ/viewform?usp=header ',
-    image: 'https://cdn-icons-png.flaticon.com/512/2416/2416471.png'
+    icon: <FaUniversity className="w-full h-full text-white" />
   },
   {
     name: 'Competitive Exams',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSd_ZusIbyKnOj2-2Opi1VefmfX01WO_01_Dh0uPOKMUM8AAIg/viewform?usp=header ',
-    image: 'https://cdn-icons-png.flaticon.com/512/2416/2416471.png'
+    icon: <FaBookReader className="w-full h-full text-white" />
   },
   {
     name: 'Special Products',
     path: 'https://docs.google.com/forms/d/e/1FAIpQLSclUtescsNIHhUYwyMv0L8bJfZ0eQil8zDIO76PeOdV1nAamA/viewform?usp=header ',
-    image: 'https://cdn-icons-png.flaticon.com/512/2416/2416471.png'
+    icon: <FaLaptop className="w-full h-full text-white" />
   }
 ];
 
@@ -131,11 +132,7 @@ function Sell() {
                 className="bg-gray-800 border border-emerald-500/20 rounded-xl p-6 flex flex-col items-center shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 p-3 mb-4 flex items-center justify-center">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-10 h-10 object-contain"
-                  />
+                  {category.icon}
                 </div>
                 <span className="text-gray-200 font-medium text-center">{category.name}</span>
               </Link>
