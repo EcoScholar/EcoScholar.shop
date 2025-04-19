@@ -1,0 +1,38 @@
+/* Barba.js transition styles */
+html.is-animating .barba-container {
+  pointer-events: none;
+  position: absolute;
+}
+
+html.is-animating.is-leaving .barba-container {
+  position: absolute;
+}
+
+html.is-animating.is-rendering .barba-container {
+  position: relative;
+}
+
+/* Optional: Add additional transition styles */
+[data-barba="container"] {
+  position: relative;
+  width: 100%;
+  transition: opacity 0.5s ease;
+}
+
+/* Smoothly transition all animatable properties for better page flow */
+* {
+  transition: background-color 0.5s ease, 
+              color 0.5s ease, 
+              opacity 0.5s ease,
+              transform 0.5s ease;
+}
+
+/* Optional: specific transition styles for different namespaces */
+[data-barba-namespace="home"] {
+  /* Home-specific transition styles */
+}
+
+/* For larger page animations that should be controlled by barba */
+.barba-transition {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+} 
