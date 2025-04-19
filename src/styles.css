@@ -447,19 +447,19 @@ video {
 }
 
 #card1 {
-  background-image: url(https://images.unsplash.com/photo-1596727147705-61a532a659bd?auto=format&fit=crop&q=80);
+  background-image: url(src/assets/about1.jpg);
 }
 
 #card2 {
-  background-image: url(https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80);
+  background-image: url(src/assets/about2.jpeg);
 }
 
 #card3 {
-  background-image: url(https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&q=80);
+  background-image: url(src/assets/books/book-3.png);
 }
 
 #card4 {
-  background-image: url("https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop");
+  background-image: url(src/assets/about4.jpeg);
   background-size: cover;
   background-position: center;
 }
