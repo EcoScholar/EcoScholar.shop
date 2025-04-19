@@ -9,6 +9,7 @@ import Loading from './n.components/Loading'
 import { useLocation } from 'react-router-dom'
 import Footer from './n.components/Footer'
 import ChatBubble from './components/ChatBubble'
+import BarbaWrapper from './components/BarbaWrapper'
 
 import './styles.css';
 
@@ -38,12 +39,14 @@ function App() {
       {!isMobile && <CustomCursor />}
       <AuthProvide>
         <StudyProvider>
-          <Navbar />
-          <main className='w-full min-h-screen pt-16 md:pt-20'>
-            <Outlet />
-          </main>
-          {!isHomePage && <Footer />}
-          <ChatBubble />
+          <BarbaWrapper>
+            <Navbar />
+            <main className='w-full min-h-screen pt-16 md:pt-20' data-barba="container">
+              <Outlet />
+            </main>
+            {!isHomePage && <Footer />}
+            <ChatBubble />
+          </BarbaWrapper>
         </StudyProvider>
       </AuthProvide>
     </>
