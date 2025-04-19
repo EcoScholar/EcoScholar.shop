@@ -1,6 +1,6 @@
 // Base URL for API calls
 const baseURL = process.env.NODE_ENV === 'production' 
-  ? 'https://backend-1-iota.vercel.app/'
+  ? 'https://backend-1-iota.vercel.app'
   : 'http://localhost:5000';
 
 const getBaseUrl = () => {
