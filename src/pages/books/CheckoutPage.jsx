@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { clearCart } from '../../redux/features/cart/cartSlice';
 import { initializeRazorpayPayment } from '../../utils/razorpay';
+import { motion } from 'framer-motion';
 
 import Swal from'sweetalert2';
 import { useCreateOrderMutation } from '../../redux/features/orders/ordersApi';
@@ -125,47 +126,6 @@ const CheckoutPage = () => {
                                 </div>
                             )}
                             
-                            {/* Payment Method Selection */}
-                            <div className="mb-6">
-                                <h3 className="text-lg font-semibold text-gray-700 mb-4">Select Payment Method</h3>
-                                <div className="space-y-4">
-                                    <div 
-                                        className={`p-4 border rounded-lg cursor-pointer ${paymentMethod === 'COD' ? 'border-blue-500 bg-blue-50' : ''}`}
-                                        onClick={() => setPaymentMethod('COD')}
-                                    >
-                                        <div className="flex items-center">
-                                            <input
-                                                type="radio"
-                                                checked={paymentMethod === 'COD'}
-                                                onChange={() => setPaymentMethod('COD')}
-                                                className="mr-3"
-                                            />
-                                            <div>
-                                                <p className="font-medium text-black">Cash on Delivery</p>
-                                                <p className="text-sm text-gray-900">Pay when you receive your order</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div 
-                                        className={`p-4 border rounded-lg cursor-pointer ${paymentMethod === 'RAZORPAY' ? 'border-blue-500 bg-blue-50' : ''}`}
-                                        onClick={() => setPaymentMethod('RAZORPAY')}
-                                    >
-                                        <div className="flex items-center">
-                                            <input
-                                                type="radio"
-                                                checked={paymentMethod === 'RAZORPAY'}
-                                                onChange={() => setPaymentMethod('RAZORPAY')}
-                                                className="mr-3"
-                                            />
-                                            <div>
-                                                <p className="font-medium text-black">Pay Online (Razorpay)</p>
-                                                <p className="text-sm text-gray-900">Secure online payment</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3 my-8">
                                 <div className="text-black">
                                     <p className="font-medium text-lg">Personal Details</p>
@@ -279,6 +239,81 @@ const CheckoutPage = () => {
                                             {errors.zipcode && <p className="text-red-500 text-xs mt-1">{errors.zipcode.message}</p>}
                                         </div>
 
+                                        {/* Payment Method Selection - Moved here */}
+                                        <div className="md:col-span-5 text-left mt-4">
+                                            <h3 className="text-lg font-semibold text-gray-700 mb-4">Payment Method Selection</h3>
+                                            <div className="space-y-4">
+                                                <motion.div 
+                                                    className={`p-4 border rounded-lg cursor-pointer ${paymentMethod === 'COD' ? 'border-blue-500 bg-blue-50' : ''}`}
+                                                    onClick={() => setPaymentMethod('COD')}
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    initial={{ rotateX: -15, opacity: 0 }}
+                                                    animate={{ 
+                                                        rotateX: 0, 
+                                                        opacity: 1,
+                                                        boxShadow: paymentMethod === 'COD' ? '0px 10px 15px rgba(0, 0, 255, 0.1)' : '0px 5px 10px rgba(0, 0, 0, 0.05)'
+                                                    }}
+                                                    transition={{ 
+                                                        type: "spring", 
+                                                        stiffness: 300, 
+                                                        damping: 20,
+                                                        duration: 0.4
+                                                    }}
+                                                >
+                                                    <div className="flex items-center">
+                                                        <motion.input
+                                                            type="radio"
+                                                            checked={paymentMethod === 'COD'}
+                                                            onChange={() => setPaymentMethod('COD')}
+                                                            className="mr-3 h-4 w-4"
+                                                            animate={{ scale: paymentMethod === 'COD' ? 1.2 : 1 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        />
+                                                        <div>
+                                                            <p className="font-medium text-black">Cash on Delivery</p>
+                                                            <p className="text-sm text-gray-900">Pay when you receive your order</p>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                                <motion.div 
+                                                    className={`p-4 border rounded-lg cursor-pointer ${paymentMethod === 'RAZORPAY' ? 'border-blue-500 bg-blue-50' : ''}`}
+                                                    onClick={() => setPaymentMethod('RAZORPAY')}
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    initial={{ rotateX: -15, opacity: 0 }}
+                                                    animate={{ 
+                                                        rotateX: 0, 
+                                                        opacity: 1,
+                                                        y: [null, -5, 0],
+                                                        boxShadow: paymentMethod === 'RAZORPAY' ? '0px 10px 15px rgba(0, 0, 255, 0.1)' : '0px 5px 10px rgba(0, 0, 0, 0.05)'
+                                                    }}
+                                                    transition={{ 
+                                                        type: "spring", 
+                                                        stiffness: 300, 
+                                                        damping: 20,
+                                                        delay: 0.1,
+                                                        duration: 0.4
+                                                    }}
+                                                >
+                                                    <div className="flex items-center">
+                                                        <motion.input
+                                                            type="radio"
+                                                            checked={paymentMethod === 'RAZORPAY'}
+                                                            onChange={() => setPaymentMethod('RAZORPAY')}
+                                                            className="mr-3 h-4 w-4"
+                                                            animate={{ scale: paymentMethod === 'RAZORPAY' ? 1.2 : 1 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        />
+                                                        <div>
+                                                            <p className="font-medium text-black">Pay Online (Razorpay)</p>
+                                                            <p className="text-sm text-gray-900">Secure online payment</p>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            </div>
+                                        </div>
+
                                         <div className="md:col-span-5 mt-3 text-left">
                                             <div className="inline-flex items-center">
                                                 <input
@@ -287,8 +322,6 @@ const CheckoutPage = () => {
                                                 <label htmlFor="billing_same" className="ml-2 text-black whitespace-nowrap">I agree to the <Link className='underline underline-offset-2 text-blue-600'>Terms & Conditions</Link> and <Link className='underline underline-offset-2 text-blue-600'>Shopping Policy</Link></label>
                                             </div>
                                         </div>
-
-
 
                                         <div className="md:col-span-5 text-right">
                                             <div className="inline-flex items-end">
