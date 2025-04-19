@@ -320,25 +320,25 @@ const Home = () => {
           <div id="cards-container" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 p-3 md:p-8">
             <div onClick={() => navigate('/all-items')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card1">
               <h4 onClick={() => navigate('/all-items')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Collections 📚</h4>
-              <p className="text-xs md:text-base">
+              <p className="text-xs md:text-base hidden sm:block">
                 Discover, trade, and treasure books that whisper wisdom through time.
               </p>
             </div>
             <div onClick={() => navigate('/sell')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card2">
               <h4 onClick={() => navigate('/sell')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Sell 📚</h4>
-              <p className="text-xs md:text-base">
+              <p className="text-xs md:text-base hidden sm:block">
                 From pens that glide to notebooks that listen—find tools that spark creativity.
               </p>
             </div>
             <div onClick={() => navigate('/studymaterials')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card3">
               <h4 onClick={() => navigate('/studymaterials')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Study Materials 📚</h4>
-              <p className="text-xs md:text-base">
+              <p className="text-xs md:text-base hidden sm:block">
                 Curated for readers, writers, and visionaries—shop with purpose, sell with pride.
               </p>
             </div>
             <div onClick={() => navigate('/library')} className="card p-3 rounded-lg shadow-lg text-sm md:text-base" id="card4">
               <h4 onClick={() => navigate('/library')} className="text-base md:text-xl font-semibold mb-1 md:mb-2">Library 📚</h4>
-              <p className="text-xs md:text-base">
+              <p className="text-xs md:text-base hidden sm:block">
                 Access premium study resources, from textbooks to digital notes.
                 Get everything you need for academic success in one place.
               </p>
